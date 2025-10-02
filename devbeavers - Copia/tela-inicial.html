@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz JavaScript - Página Inicial</title>
+    <link rel="shortcut icon" href="imagens_tamanho_certo/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=B612:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "B612", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff6e9 0%, #ffffff 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Menu lateral melhorado */
+        nav.menu-lateral {
+            width: 68px;
+            height: 100%;
+            background-color: rgb(234, 232, 232);
+            padding: 40px 0px 40px 1%;
+            box-shadow: 3px 0px 0px #F78008;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            transition: .3s;
+            z-index: 1000;
+        }
+
+        nav.menu-lateral:hover {
+            width: 280px;
+        }
+
+        .btn-expandir {
+            width: 100%;
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn-expandir > i {
+            color: black;
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-expandir > i:hover {
+            transform: scale(1.1);
+        }
+
+        ul {
+            height: 100%;
+            list-style-type: none;
+        }
+
+        ul li.item-menu {
+            transition: .2s;
+            border-radius: 8px 0 0 8px;
+            margin: 8px 0;
+        }
+
+        ul li.item-menu:hover {
+            background-color: #F78008;
+        }
+
+        ul li.item-menu a {
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 20px 4%;
+            display: flex;
+            margin-bottom: 20px;
+            line-height: 40px;
+            transition: color 0.3s;
+        }
+
+        ul li.item-menu:hover a {
+            color: white;
+        }
+
+        ul li.item-menu a .text-link {
+            margin-left: 25px;
+            white-space: nowrap;
+        }
+
+        ul li.item-menu a .icon > i {
+            font-size: 28px;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            margin-left: 80px;
+            padding: 30px;
+            width: calc(100% - 80px);
+            transition: margin-left 0.3s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .welcome-message h1 {
+            font-size: 28px;
+            color: #F78008;
+            margin-bottom: 10px;
+        }
+
+        .welcome-message p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #F78008;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .user-status {
+            color: #4caf50;
+            font-size: 14px;
+        }
+
+        /* Módulo e progresso */
+        .modulo {
+            background: linear-gradient(135deg, #ff8c00 0%, #ffae42 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            box-shadow: 0 6px 15px rgba(255, 140, 0, 0.2);
+        }
+
+        .modulo small {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .modulo span {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .modulo-progress {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+
+        .progresso {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progresso::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8c00, #ffae42);
+        }
+
+        .stars-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px;
+        }
+
+        .star {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .star:hover {
+            transform: scale(1.1);
+        }
+
+        .star.amarela {
+            filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.8));
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #ff8c00, #ffae42);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 120px;
+            box-shadow: 0 4px 8px rgba(255, 140, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Castor animado */
+        .castor-container {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            z-index: 10;
+        }
+
+        .castor {
+            width: 180px;
+            transform-origin: center bottom;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        /* Cards de informações */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px auto;
+            max-width: 900px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #F78008;
+        }
+
+        .card-header i {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Rodapé */
+        footer {
+            background: linear-gradient(135deg, #ff8c00 0%, #ffae42 100%);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: auto;
+            margin-left: 80px;
+            width: calc(100% - 80px);
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            
+            nav.menu-lateral {
+                width: 60px;
+            }
+            
+            nav.menu-lateral:hover {
+                width: 60px;
+            }
+            
+            .text-link {
+                display: none;
+            }
+            
+            footer {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .modulo {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .stars-container {
+                gap: 10px;
+            }
+            
+            .star {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .castor-container {
+                right: 15px;
+                bottom: 15px;
+            }
+            
+            .castor {
+                width: 120px;
+            }
+            
+            .buttons-container {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="menu-lateral">
+        <div class="btn-expandir">
+            <i class="bi bi-list"></i>
+        </div>
+
+        <ul>
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icon"><i class="bi bi-person-fill"></i></span>
+                    <span class="text-link">Usuário</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icon"><i class="bi bi-pc-display"></i></span>
+                    <span class="text-link">HTML</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="inicio.html">
+                    <span class="icon"><i class="bi bi-box-arrow-left"></i></span>
+                    <span class="text-link">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header">
+            <div class="welcome-message">
+                <h1>Bem-vindo ao Quiz HTML!</h1>
+                <p>Aprenda HTML de forma divertida e desafiadora</p>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar">
+                       <i class="bi bi-person-fill"></i>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">Estudante</span>
+                    <span class="user-status">Online</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="modulo">
+            <div>
+                <small>MÓDULO 1</small><br>
+                <span>HTML - INÍCIO</span>
+            </div>
+            <div class="modulo-progress">60%</div>
+        </div>
+
+        <div class="progresso">
+            <div class="stars-container">
+                <img class="star amarela" src="imagens_tamanho_certo/estrela.png" alt="Estrela 1 concluída">
+                <img class="star amarela" src="imagens_tamanho_certo/estrela.png" alt="Estrela 2 concluída">
+                <img class="star amarela" src="imagens_tamanho_certo/estrela.png" alt="Estrela 3 concluída">
+                <img class="star" src="imagens_tamanho_certo/estrela-cinza.png" alt="Estrela 4 não concluída">
+                <img class="star" src="imagens_tamanho_certo/estrela-cinza.png" alt="Estrela 5 não concluída">
+            </div>
+            
+            <div class="buttons-container">
+                <input type="button" value="Fase 1" class="btn" onclick="window.location.href='questao1.html'">
+                <input type="button" value="Fase 2" class="btn">
+                <input type="button" value="Fase 3" class="btn">
+                <input type="button" value="Fase 4" class="btn">
+                <input type="button" value="Fase 5" class="btn">
+            </div>
+        </div>
+
+        <div class="info-cards">
+            <div class="card">
+                <div class="card-header">
+                    <i class="bi bi-trophy-fill"></i>
+                    <h3>Seu Progresso</h3>
+                </div>
+                <p>Você completou 3 de 5 fases deste módulo. Continue assim!</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="bi bi-lightbulb-fill"></i>
+                    <h3>Dica de Estudo</h3>
+                </div>
+                <p>Revise as tags HTML básicas antes de começar as próximas fases.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <i class="bi bi-clock-fill"></i>
+                    <h3>Tempo Médio</h3>
+                </div>
+                <p>Alunos levam em média 15 minutos para completar cada fase.</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="castor-container">
+        <img class="castor" src="imagens_tamanho_certo/sentadoacenado-removebg-preview (2).png" alt="Castor mascote">
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Sobre Nós</a>
+                <a href="#">Contato</a>
+                <a href="#">Ajuda</a>
+                <a href="#">Termos de Uso</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Quiz HTML - Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Adicionar interatividade ao menu lateral
+        document.querySelector('.btn-expandir').addEventListener('click', function() {
+            const menu = document.querySelector('.menu-lateral');
+            if (menu.style.width === '280px' || menu.style.width === '') {
+                menu.style.width = '80px';
+            } else {
+                menu.style.width = '280px';
+            }
+        });
+
+        // Efeito de digitação no título
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcomeTitle = document.querySelector('.welcome-message h1');
+            const originalText = welcomeTitle.textContent;
+            welcomeTitle.textContent = '';
+            
+            let i = 0;
+            const typeWriter = setInterval(function() {
+                if (i < originalText.length) {
+                    welcomeTitle.textContent += originalText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeWriter);
+                }
+            }, 80);
+        });
+    </script>
+</body>
+</html>

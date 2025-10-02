@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="questao1.css">
+  <link href="https://fonts.googleapis.com/css2?family=B612:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="questions.js" defer></script>
+
+  <title>Quiz HTML</title>
+</head>
+<body>
+  <!-- Header adicionado -->
+  <header class="quiz-header">
+    <div class="header-pattern"></div>
+    <div class="header-content">
+      <div class="logo-container">
+        <div class="logo-icon">❓</div>
+        <h1 class="logo-text">Quiz<span> HTML</span></h1>
+      </div>
+      <div class="header-details">
+        <div class="score-display">Pontuação: 0</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+    </div>
+    <div class="progress-text" id="progress-text">Pergunta 0 de 5</div>
+    
+    <div class="questions-container hide">
+      <span class="question">Pergunta aqui?</span>
+      <div class="answers-container">
+        <button class="answer button">Resposta 1</button>
+        <button class="answer button">Resposta 2</button>
+        <button class="answer button">Resposta 3</button>
+        <button class="answer button">Resposta 4</button>
+      </div>
+    </div>
+    <div class="controls-container"><br>
+      <button class="start-quiz button"><i class="fas fa-play"></i> Começar Quiz!</button>
+      <button class="next-question button hide">Próxima pergunta <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+  
+  <!-- Rodapé adicionado -->
+  <footer class="quiz-footer">
+    <div class="footer-content">
+      <p>© 2025 Quiz HTML - Teste seus conhecimentos em programação</p>
+      <div class="footer-links">
+        <a href="tela-inicial.html"><i class="fas fa-home"></i> Voltar ao Início</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Ajuda</a>
+        <a href="#"><i class="fas fa-envelope"></i> Contato</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
