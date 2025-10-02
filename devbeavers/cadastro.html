@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link rel="shortcut icon" href="imagens_tamanho_certo/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <img class="olhofechado show" id="olhofechado" src="imagens_tamanho_certo/olhofechado.png" alt="">
+    <img class="olhoaberto hide" id="olhoaberto" src="imagens_tamanho_certo/castoraberto-removebg-preview.png" alt="">
+
+    <div class="login">
+
+    <form action="cadastro.php" method="POST">
+        
+    <h2>Email</h2>
+    <input class="email" name="email" style= "padding: 15px; top: 30%;" type="text" placeholder ="nome de usuário">
+    <br>
+    <h2>Usuário</h2>
+    <input class="usuario" name="usuario" style= "padding: 15px; top: 30%;" type="text" placeholder ="nome de usuário">
+    <br>
+    <h2>Senha</h2>
+    <input class="password" name="senha" style= "padding: 15px; top: 40%;" type="password" placeholder="senha" id="senha">
+    <i class="bi bi-eye-fill" id="btn-senha" onclick="mostrarSenha()"></i>
+    <br><br>
+    <input type="submit" value="Entrar" class="button">
+  
+    </form>
+
+    </div>
+
+    <script src="login.js"></script>
+
+</body>
+</html>

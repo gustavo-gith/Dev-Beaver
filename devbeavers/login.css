@@ -1,0 +1,105 @@
+body{
+  font-family: "B612", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.olhofechado, .olhoaberto{
+    width: 184px;
+    display: flex;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    top: -14px;
+    z-index: 1;
+    nav-index: 1;
+    position: relative;
+}
+
+.hide {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    nav-index: 1;
+}
+
+.show {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    nav-index: 1;
+}
+
+.login{
+    background-color: #F8F8F8;  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); ;
+    padding: 35px;
+    border-radius: 15px;
+    color: orange;
+    z-index: 0;
+    nav-index: 0;
+    -webkit-box-shadow: 1px 6px 8px -3px #BEBDBD; 
+    box-shadow: 1px 6px 8px -3px #BEBDBD;
+    width: 20%;
+}
+
+.usuario{
+    border: none;
+    -webkit-box-shadow: 1px 6px 8px -3px #BEBDBD; 
+    box-shadow: 1px 6px 8px -3px #BEBDBD;
+    font-family: "B612", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    border-radius: 5px;
+    width: 88%;
+    outline: none;
+}
+
+.password{
+    border: none;
+    -webkit-box-shadow: 1px 6px 8px -3px #BEBDBD; 
+    box-shadow: 1px 6px 8px -3px #BEBDBD;
+    font-family: "B612", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    border-radius: 5px;
+    width: 88%;
+    outline: none;
+}
+
+.button{
+    border: none;
+    -webkit-box-shadow: 1px 6px 8px -3px #BEBDBD; 
+    box-shadow: 1px 6px 8px -3px #BEBDBD;
+    font-family: "B612", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    background-color: #F78008;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.login i{
+    font-size: 25px;
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    right: 15%;
+    color: rgba(128, 128, 128, 0.838);
+    top: 64%;
+    
+}
+input::placeholder{
+    color: rgba(183, 179, 179, 0.906);
+}
